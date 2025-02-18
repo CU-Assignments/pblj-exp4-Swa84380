@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Scanner;
+
+class Card {
+    private String rank;
+    private String suit;
+
+    // Constructor
+    public Card(String rank, String suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
+
+    // Method to display card details
+    public void display() {
+        System.out.println(rank + " of " + suit);
+    }
+
+    // Getter for suit
+    public String getSuit() {
+        return suit;
+    }
+}
+
+public class CardCollection {
+    public static void main(String[] args) {
+        // Creating a collection to store cards
+        Collection<Card> deck = new ArrayList<>();
+
+        // Adding cards to the collection
+        deck.add(new Card("Ace", "Spades"));
+        deck.add(new Card("King", "Hearts"));
+        deck.add(new Card("Queen", "Diamonds"));
+        deck.add(new Card("2", "Clubs"));
+        deck.add(new Card("7", "Spades"));
+
+        // Take input for searching cards by suit
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter suit to search for (Spades, Hearts, Clubs, Diamonds): ");
+        String searchSuit = scanner.nextLine();
+
+        // Search and display cards of the given suit
+        boolean found = false;
+        for (Card card : deck) {
+            if (card.getSuit().equalsIgnoreCase(searchSuit)) {
+                card.display();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No cards found with the suit: " + searchSuit);
+        }
+
+        scanner.close();
+    }
+}
